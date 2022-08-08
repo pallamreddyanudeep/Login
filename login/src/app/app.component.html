@@ -1,0 +1,50 @@
+<div *ngIf="loginpage" style="text-align: center;"> 
+  <p style="font-size: 20px;color: cornflowerblue;">Login Page</p>
+  <p *ngIf="success" style="font-size: 24px;color: rgb(24, 202, 8);">Registared succesfully</p>
+  <div style="text-align: left;">
+    <form (submit)="Login()" [formGroup]="LoginForm" autocomplete="off">
+      <div style="margin-bottom: 15px;">
+        <span>User ID <input type="text" formControlName="username" style="margin-left: 25px;" (focusout)="loginusername(username.value)" #username></span> <br>        
+      </div>
+      <div style="margin-bottom: 15px;">
+        <span>Password <input type="text" formControlName="password" style="margin-left: 15px;" (focusout)="loginuserpassword(password.value)" #password></span>
+      </div>
+      <div>
+        <span *ngIf="error" style="color: red;">{{error}}</span>
+      </div>
+      <button (click)="userlogin()" style="margin-right: 15px;">Login </button>
+      <button (click)="register()">Register</button>
+
+    </form>
+  </div>
+</div>
+
+<div *ngIf="!loginpage && registrationpage" style="text-align: center;">
+  <p style="font-size: 20px;color: cornflowerblue;">Registration Page</p>
+  <div style="text-align: left;">
+    <form (submit)="registration()" [formGroup]="registerform" autocomplete="off">
+      <div style="margin-bottom: 15px;">
+        <span  >Username</span>
+        <input type="text" formControlName="username" (focusout)="userusername(username.value)" #username style="margin-left: 20px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+        <span>First Name</span>
+        <input type="text" formControlName="firstname" style="margin-left: 13px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+        <span>Last Name</span>
+        <input type="text" formControlName="lastname" style="margin-left: 16px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+        <span>Password</span>
+        <input type="text" formControlName="password" (focusout)="userpassword(password.value)" #password style="margin-left: 24px;">
+      </div>
+      <!-- <button (click)="login()">Login </button> -->
+      <button >Register</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="loggedin">
+  <p style="font-size: 20px;color: cornflowerblue;">User Logged in Successfully</p>
+</div>
